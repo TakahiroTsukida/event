@@ -26,6 +26,7 @@
             </div>
         </div>
         
+        <!-- いいねボタン -->
         <div class="card-body pt-0 pb-2 pl-3">
             <div class="card-text">
                 <event-like
@@ -60,6 +61,8 @@
                 <p>受付は終了しました</p>
                 @endif
             </div>
+
+            @include('parts/event/join_button')
 
             <div class="text-center">
                 <a href="{{ route('user.event.show', ['event' => $event]) }}" class="btn btn-primary btn-rounded mt-2 mb-2">詳細</a>

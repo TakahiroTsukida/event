@@ -10,6 +10,7 @@ use App\Admin\Shop;
 use App\Admin\Price;
 use App\Admin\Schedule;
 use App\Admin\Capa;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {

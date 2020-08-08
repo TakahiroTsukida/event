@@ -90,4 +90,12 @@ class Event extends Model
     {
         return $this->likes->count();
     }
+
+
+    public function isJoinedBy(?User $user): bool
+    {
+        return $user
+            ? (bool)$this->joins->where('id', $user->id)->count()
+            : false;
+    }
 }

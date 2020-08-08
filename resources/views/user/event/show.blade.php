@@ -74,37 +74,7 @@ $deadline = date('w', strtotime($event->deadline));
                 <p>定員：{{ $capa->people ?? $capa->people }}</p>
                 @endforeach
 
-                
-                @if (Auth::guard('user')->check())
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalPopovers">
-                    Launch demo modal
-                </button>
-
-                <div id="exampleModalPopovers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalPopoversLabel">チケットの選択</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <i class="fas fa-female"></i>
-                                <a href="{{ route('user.event.join_form', ['event' => $event]) }}" class="btn btn-success">参加を申し込む</a>
-                                <hr>
-                                <i class="fas fa-male"></i>
-                                <a href="{{ route('user.event.join_form', ['event' => $event]) }}" class="btn btn-success">参加を申し込む</a>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
+                @include('parts/event/join_button')
 
                 @if (Auth::guard('admin')->check())
                 <div class="text-center">

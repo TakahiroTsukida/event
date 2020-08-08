@@ -31,5 +31,13 @@
             </div>
         </div>
     </div>
+
+    @if ($user->id == Auth::guard('user')->user()->id)
+    <div class="card mt-3">
+        <div class="card-body">
+            <p>参加予定のイベント</p>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection
