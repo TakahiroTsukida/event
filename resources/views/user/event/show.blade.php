@@ -26,6 +26,12 @@ $deadline = date('w', strtotime($event->deadline));
                 @endif
             </div>
         </div>
+
+        <!-- いいねボタン -->
+        @include('parts/event/like_button')
+
+
+        
         <div class="card-body pt-0 pb-2">
             <h2 class="h4 card-title">{{ $event->title }}</h2>
 

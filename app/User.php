@@ -64,4 +64,10 @@ class User extends Authenticatable
     }
 
 
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Admin\Event', 'likes')->withTimestamps();
+    }
+
+
 }

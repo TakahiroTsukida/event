@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Admin\Event;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -62,7 +63,7 @@ class EventController extends Controller
         $event->joins()->detach($request->user()->id);
         $event->joins()->attach($request->user()->id);
 
-        return redirect()->route('top');
+        return redirect()->route('user.show', ['id' => Auth::guard('user')->user()->id]);
     }
 
 
@@ -70,6 +71,6 @@ class EventController extends Controller
     {
         $event->joins()->detach($request->user()->id);
 
-        return redirect()->route('top');
+        return redirect()->route('user.show', ['id' => Auth::guard('user')->user()->id]);
     }
 }
