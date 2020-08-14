@@ -80,7 +80,16 @@ $deadline = date('w', strtotime($event->deadline));
                 <p>定員：{{ $capa->people ?? $capa->people }}</p>
                 @endforeach
 
+
+
+                <!-- 予約・キャンセルボタン -->
                 @include('parts/event/join_button')
+
+
+                <!-- イベント参加メンバー -->
+                @include('parts/event/members')
+
+
 
                 @if (Auth::guard('admin')->check())
                 <div class="text-center">

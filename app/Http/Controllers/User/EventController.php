@@ -73,4 +73,10 @@ class EventController extends Controller
 
         return redirect()->route('user.show', ['id' => Auth::guard('user')->user()->id]);
     }
+
+
+    public function members(Event $event)
+    {
+        return view('user.event.members', ['event' => $event]);
+    }
 }

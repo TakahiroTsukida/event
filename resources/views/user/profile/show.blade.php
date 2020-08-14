@@ -27,6 +27,7 @@
             @endphp
             <p>{{ $age }}</p>
             <p>{{ $user->introduction }}</p>
+            <p>{{ $user->email }}</p>
         </div>
         <div class="card-body">
             <div class="card-text">
