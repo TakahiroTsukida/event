@@ -15,48 +15,39 @@
 
         $deadline = date('w', strtotime($event->deadline));
     @endphp
-
-    <div class="card mt-3">
-        <div class="card-body d-flex flex-row">
-            <div class="font-weight-bold">
-                <h1>{{ $event->name }}</h1>
-                @if ($event->image_path)
-                <p><img src="{{ asset('storage/image/event_images/'.$event->image_path) }}"></p>
-                @endif
+    
+    <div class="eventList-item">
+        <a href="{{ route('user.event.show', ['event' => $event]) }}">
+            <div class="d-flex flex-row">
+                <div class="font-weight-bold">
+                    <h3 class="title">{{ $event->title }}</h3>
+                    @if ($event->image_path)
+                    <p class="img"><img src="{{ asset('storage/image/event_images/'.$event->image_path) }}"></p>
+                    @endif
+                    <h2 class="name">{{ $event->name }}</h2>
+                </div>
             </div>
-        </div>
+        </a>
         
         <!-- いいねボタン -->
         @include('parts/event/like_button')
-    
-        <div class="card-body pt-0 pb-2">
-            <h2 class="h4 card-title">{{ $event->title }}</h2>
+        
+        <div class="body">
+            <a href="{{ route('user.event.show', ['event' => $event]) }}">
+                <div class="about">
+                    <p>{{ isset($event->shop) ? $event->shop->name : "オンライン"}}　|　{{ date('n/j（'.$week[$start_day].'）H:i〜', strtotime($event->start_time)) }}</p>
 
-            <div class="card-text">
-                <p>{{ isset($event->shop) ? $event->shop->name : "オンライン"}}</p>
-
-                {{-- 開始時間 --}}
-                <p>{{ date('n/j（'.$week[$start_day].'）H:i〜', strtotime($event->start_time)) }}</p>
-
-                {{-- 終了時間 --}}
-                <p>{{ date('n/j ('.$week[$end_day].') H:i', strtotime($event->end_time)) }}</p>
-
-                {{-- 締切時間 --}}
-                <p>{{ date('n/j ('.$week[$deadline].') H:i', strtotime($event->deadline)) }}</p>
-
-                <p>{{ $event->descripsion }}</p>
-                <p>{{ $event->conditions }}</p>
-                @if ($event->finish == "0")
-                <p>申し込み受付中</p>
-                @elseif ($event->finish == "1")
-                <p>受付は終了しました</p>
-                @endif
-            </div>
+                    @if ($event->finish == "0")
+                    <p>申し込み受付中</p>
+                    @elseif ($event->finish == "1")
+                    <p>受付は終了しました</p>
+                    @endif
+                </div>
+            </a>
 
             @include('parts/event/join_button')
 
-            <div class="text-center">
-                <a href="{{ route('user.event.show', ['event' => $event]) }}" class="btn btn-primary btn-rounded mt-2 mb-2">詳細</a>
+            <div class="show">
 
                 @if (Auth::guard('admin')->check())
                 <a href="{{ route('admin.event.edit', ['event' => $event]) }}" class="btn btn-success btn-rounded mt-2 mb-2">編集</a>

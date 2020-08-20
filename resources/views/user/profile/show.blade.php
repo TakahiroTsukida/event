@@ -91,6 +91,10 @@
 
         </div>
     </div>
+
+    <!-- <mypage :user-likes="@json($user->likes)"
+            :user-joins="@json($user->joins)"> -->
+    </mypage>
     @endif
 
 

@@ -8,11 +8,13 @@
 import './bootstrap'
 import Vue from 'vue'
 import EventLike from './components/EventLike'
+import Mypage from './components/Mypage'
 
 const app = new Vue({
     el: '#app',
     components: {
         EventLike,
+        Mypage,
     }
 })
 

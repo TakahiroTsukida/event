@@ -1,10 +1,11 @@
 @unless (Auth::guard('admin')->check())
     @if ($event->isJoinedBy(Auth::guard('user')->user()))
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalPopovers{{ $event->id }}">
-            予約をキャンセルする
-        </button>
+        <div class="join">
+            <!-- Button trigger modal -->
+            <button type="button" class="cancel-btn" data-toggle="modal" data-target="#exampleModalPopovers{{ $event->id }}">
+                予約をキャンセルする
+            </button>
+        </div>        
 
         <div id="exampleModalPopovers{{ $event->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel">
             <div class="modal-dialog" role="document">
@@ -32,10 +33,13 @@
 
     @else
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalPopovers{{ $event->id }}">
-            参加を申し込む
-        </button>
+        <div class="join">
+            <!-- Button trigger modal -->
+            <button type="button" class="join-btn" data-toggle="modal" data-target="#exampleModalPopovers{{ $event->id }}">
+                参加を申し込む
+            </button>
+        </div>
+        
 
         <div id="exampleModalPopovers{{ $event->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel">
             <div class="modal-dialog" role="document">

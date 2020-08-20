@@ -1,0 +1,105 @@
+$pc: 992px; // PC 1024px
+$tab: 768px; // タブレット
+
+@mixin tab {
+  @media (min-width: ($tab)) {
+    @content;
+  }
+}
+@mixin pc {
+  @media (min-width: ($pc)) {
+    @content;
+  }
+}
+
+main {
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 16px !important;
+}
+
+h3 {
+    font-size: 15px !important;
+}
+
+p {
+    font-size: 12px !important;
+}
+
+
+//イベント一覧 (event-index)
+.eventList-item {
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #adacac;
+    margin-top: 27px;
+    padding-bottom: 15px;
+
+    a {
+        color: #000;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .name {
+        margin: 10px 15px 0 15px;
+    }
+
+    .title {
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
+        background: linear-gradient(25deg, #f978a2, #fbba77);
+        color: #fff;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .img {
+        margin: 0;
+        width: 100%;
+    }
+
+    .like {
+        width: 100%;
+        margin: 0 15px;
+    }
+    
+    .about {
+        margin: 0 15px;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    .join {
+        text-align: center;
+
+        .cancel-btn {
+            color: #fff;
+            background: #cacaca;
+            border: none;
+            border-radius: 20px;
+            width: 95%;
+            padding: 3px;
+            font-size: 13px;
+        }
+
+        .join-btn {
+            color: #fff;
+            background: linear-gradient(40deg,#45cafc,#303f9f)!important;
+            border: none;
+            border-radius: 20px;
+            width: 95%;
+            padding: 3px;
+            font-size: 13px;
+        }
+    }
+
+    .show {
+        text-align: center;
+    }
+}
