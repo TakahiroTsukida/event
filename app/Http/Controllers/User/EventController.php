@@ -5,17 +5,40 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Admin\Event;
+use App\Admin\Shop;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::all()->sortBy('start_time');
-        
-        return view('user.event.index', ['events' => $events]);
+        $shop_id = $request->input('shop_id');
+        $date = $request->input('date');
+        $query = Event::query();
+
+        if (!empty($shop_id))
+        {
+            $events = $query->where('shop_id', $shop_id)->get();
+            
+        } else {
+
+            $events = Event::all()->sortBy('start_time');
+            $shop_id = null;
+
+        }
+
+        $shops = Shop::all();
+
+        return view('user.event.index', [
+            'events' => $events,
+            'shops' => $shops,
+            'shop_id' => $shop_id,
+        ]);
 
     }
+
+    
 
 
     public function show(Event $event)

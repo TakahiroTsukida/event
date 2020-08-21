@@ -4,6 +4,35 @@
 
 @section('content')
 <div class="container">
+    <div class="search-group">
+        <form action="{{ route('top') }}">
+            @csrf
+
+            <div class="shop">
+                <label>お店で調べる</label>
+                <select name="shop_id">
+                    <option value="">選択してください</option>
+                    <option value="0" {{ $shop_id == 0 ? 'selected' : '' }}>オンライン</option>
+                    @foreach ($shops as $shop)
+                    <option value="{{ $shop->id }}" {{ $shop_id == $shop->id ? 'selected' : '' }}>{{ $shop->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="day">
+                <label>日時で調べる</label>
+                <input type="date" name="date">
+            </div>
+
+            <div class="search-btn">
+                <button type="submit">検索する</button>
+            </div>           
+
+        </form>
+        
+
+
+    </div>
     @foreach ($events as $event)
 
     @php
