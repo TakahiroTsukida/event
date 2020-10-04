@@ -34,6 +34,9 @@ class EventRequest extends FormRequest
             'conditions' => 'nullable|string|max:255',
             'image' => 'nullable|image|max:2048',
 
+            //tagsテーブル
+            'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
+
             // pricesテーブル
             'price.gender.*' => 'nullable',
             'price.status.*' => 'nullable|string|max:255',
@@ -66,6 +69,9 @@ class EventRequest extends FormRequest
             'conditions' => '参加条件',
             'image' => '画像',
 
+            //tagsテーブル
+            'tags' => 'タグ',
+
             //pricesテーブル
             'tax' => '消費税',
             'price' => [
@@ -88,5 +94,15 @@ class EventRequest extends FormRequest
                 'people' => '人数',
             ],
         ];
+    }
+
+
+    public function passedValidation()
+    {
+        $this->tags = collect(json_decode($this->tags))
+            ->slice(0, 10)
+            ->map(function($requestTag) {
+                return $requestTag->text;
+            });
     }
 }

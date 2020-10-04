@@ -17,15 +17,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>本当にこの予約をキャンセルしますか？</p>
+                        <p>{{ $event->name }} の予約のキャンセル画面に移動しますか？</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form method="POST" action="{{ route('user.event.unjoin', ['event' => $event]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">予約を取り消す</button>
-                        </form>                        
+                        <button class="btn btn-danger" onclick="location.href='{{ route('user.event.unjoin.confirmation', ['event' => $event]) }}'">移動する</button>
                     </div>
                 </div>
             </div>

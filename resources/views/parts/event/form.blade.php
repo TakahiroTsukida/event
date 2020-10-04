@@ -10,10 +10,19 @@
 </div>
 
 <div class="form-group">
+    <label>目的</label>
+    <event-tags-input
+        :initial-tags='@json($tagName ?? [])'
+        :autocomplete-items='@json($allTagNames ?? [])'
+    >
+    </event-tags-input>
+</div>
+
+<div class="form-group">
     <label class="mdb-main-label">開催店舗</label>
     <select name="shop_id" class="browser-default custom-select">
         <option value="">選択してください</option>
-        <option value="0" @if(isset($event->shop_id)) {{ $event->shop_id == "0" ? 'selected' : '' }} @elseif(old('shop_id') == "0") {{ 'selected' }} @endif>オンライン</option>
+        <option value="200" @if(isset($event->shop_id)) {{ $event->shop_id == "200" ? 'selected' : '' }} @elseif(old('shop_id') == "200") {{ 'selected' }} @endif>オンライン</option>
         @foreach ($shops as $shop)
         <option value="{{ $shop->id }}" @if(isset($event->shop_id)) {{ $event->shop_id == $shop->id ? 'selected' : '' }} @elseif(old('shop_id') == $shop->id) {{ 'selected' }} @endif>{{ $shop->name }}</option>
         @endforeach

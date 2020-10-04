@@ -15,38 +15,6 @@
             <a class="nav-link" href="{{ route('user.login') }}">ログイン</a>
         </li>
     
-
-        <!-- 一般ユーザー用ナビバー -->
-        @elseif (Auth::guard('user')->check())
-            <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
-            </li>
-            
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <button class="dropdown-item" type="button" onclick="location.href='{{ route('user.show', ['id' => Auth::guard('user')->user()->id]) }}'">
-                        マイページ
-                    </button>
-                    <div class="dropdown-divider"></div>
-                    <button class="dropdown-item" type="button" onclick="location.href='{{ route('user.edit') }}'">
-                        プロフィール編集
-                    </button>
-                    <div class="dropdown-divider"></div>
-                    <button form="logout-button" class="dropdown-item" type="submit">
-                        ログアウト
-                    </button>
-                </div>
-            </li>
-            <form id="logout-button" method="POST" action="{{ route('user.logout') }}">
-                @csrf
-            </form>
-            <!-- Dropdown -->
-
-
         <!-- 管理ユーザー用ナビバー -->
         @elseif (Auth::guard('admin')->check())
             <li class="nav-item">
@@ -77,6 +45,36 @@
             <form id="logout-button" method="POST" action="{{ route('admin.logout') }}">
                 @csrf
             </form>
+
+        <!-- 一般ユーザー用ナビバー -->
+        @elseif (Auth::guard('user')->check())
+            <!-- <li class="nav-item">
+                <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
+            </li> -->
+            
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <button class="dropdown-item" type="button" onclick="location.href='{{ route('user.show', ['id' => Auth::guard('user')->user()->id]) }}'">
+                        マイページ
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" type="button" onclick="location.href='{{ route('user.edit') }}'">
+                        プロフィール編集
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button form="logout-button" class="dropdown-item" type="submit">
+                        ログアウト
+                    </button>
+                </div>
+            </li>
+            <form id="logout-button" method="POST" action="{{ route('user.logout') }}">
+                @csrf
+            </form>
+            <!-- Dropdown -->
         @endif
 
     </ul>

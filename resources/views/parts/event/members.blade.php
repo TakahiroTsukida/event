@@ -1,5 +1,5 @@
-@if (Auth::guard('user')->check())
-    @if ($event->isJoinedBy(Auth::guard('user')->user()))
+@if ((Auth::guard('user')->check()) && ($event->isJoinedBy(Auth::guard('user')->user())) || (Auth::guard('admin')->check()))
+    
     <div class="card mt-3">
         <div class="card-body d-flex flex-row">
             <h3>イベント参加者</h3>
@@ -15,5 +15,5 @@
             @endforeach
         </div>
     </div>
-    @endif
+    
 @endif

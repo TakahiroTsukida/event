@@ -77,6 +77,11 @@ class Event extends Model
         return $this->belongsToMany('App\User', 'joins')->withTimestamps();
     }
 
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Admin\Tag')->withTimestamps();
+    }
+
 
     public function isLikedBy(?User $user): bool
     {

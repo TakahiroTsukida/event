@@ -121,16 +121,29 @@ button {
 }
 
 
+/*********************************
+user.event.index
+**********************************/
 
-
+//イベント検索フォーム
 .search-group {
-
+    .purpose {
+        label {
+            display: block;
+        }
+        label.tag {
+            display: inline-block;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        label.tag input {
+            cursor: pointer;
+        }
+    }
     .shop {
-
         label {
             margin: 0;
         }
-
         select {
             display: block;
             width: 100%;
@@ -147,15 +160,11 @@ button {
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
     }
-
-
     .day {
         margin-top: 7px;
-
         label {
             margin: 0;
         }
-
         input {
             display: block;
             width: 100%;
@@ -172,22 +181,27 @@ button {
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
     }
-
-
-
     .search-btn {
         width: 100%;
         display: block;
-        margin-bottom: 15px;
-
         button {
-            margin: 15px 0 0 auto;
+            margin: 15px auto;
             display: block;
             border: none;
             background-color: #4285F4;
             color: #fff;
             padding: 7px 14px;
-            border-radius: 5px;
+            border-radius: 21px;
+            width: 50%;
         }
+    }
+}
+
+.event-empty {
+    text-align: center;
+    margin: 160px auto;
+    label {
+        font-weight: 600;
+        font-size: 14px;
     }
 }

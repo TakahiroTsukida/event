@@ -15,7 +15,7 @@
             <tr>
                 <th>名前</th>
                 <th>メールアドレス</th>
-                <th></th>
+                <th>操作</th>
             </tr>
         </thead>
 
