@@ -12,40 +12,68 @@ use App\Admin\Schedule;
 use App\Admin\Tag;
 use App\Admin\Capa;
 use App\Http\Requests\EventRequest;
+use App\Services\Admin\AdminServiceInterface;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
+    /**
+     * @var AdminServiceInterface
+     */
+    private $adminServiceInterface;
+
+    /**
+     * EventController constructor.
+     * @param AdminServiceInterface $adminServiceInterface
+     */
+    public function __construct(AdminServiceInterface $adminServiceInterface)
+    {
+        $this->adminServiceInterface = $adminServiceInterface;
+    }
+
+    /**
+     * admin-event-create
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $shops = Shop::all();
         $allTagNames = Tag::all()->map(function($tag) {
             return ['text' => $tag->name];
         });
-        
+
         return view('admin.event.create', [
             'shops'       => $shops,
             'allTagNames' => $allTagNames,
         ]);
     }
 
+    /**
+     * admin-event-store
+     * @param EventRequest $request
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(EventRequest $request, Event $event)
     {
-        $form = $request->all();
-        Event::register($request, $event);
-        Price::register($form, $event);
-        Schedule::register($form, $event);
-        Capa::register($form, $event);
+        $eventRecords = $request->input();
+        $eventImage = $request->file('image');
+        $eventTags = $request->tags?: null;
 
-        $request->tags->each(function($tagName) use ($event) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $event->tags()->attach($tag);
-        });
+        $success = $this->adminServiceInterface->storeNewEvent($eventRecords, $eventImage, $eventTags);
 
-        return redirect()->route('top');
+        if ($success) {
+            return redirect()->route('top');
+        } else {
+            return redirect()->route('admin.event.create');
+        }
     }
 
-
+    /**
+     * admin-event-edit
+     * @param Event $event
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Event $event)
     {
         $shops = Shop::all();
@@ -65,11 +93,16 @@ class EventController extends Controller
         ]);
     }
 
-
+    /**
+     * admin-event-update
+     * @param EventRequest $request
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(EventRequest $request, Event $event)
     {
         $form = $request->all();
-        
+
         Event::register($request, $event);
         Price::where('event_id', $event->id)->delete();
         Price::register($form, $event);
@@ -86,7 +119,12 @@ class EventController extends Controller
         return redirect()->route('top');
     }
 
-
+    /**
+     * admin-event-destroy
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function destroy(Event $event)
     {
         if(isset($event->image_path))

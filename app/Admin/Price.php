@@ -17,26 +17,7 @@ class Price extends Model
 
     protected $guarded = array('id');
 
-
-
-    public static function register($form, $event)
-    {
-        foreach ($form['price']['gender'] as $key => $value)
-        {
-            if ($value != null)
-            {
-                $price = new Price;
-                $price->event_id = $event->id;
-                $price->gender = $value;
-                $price->status = $form['price']['status'][$key];
-                $price->price = $form['price']['price'][$key];
-                $price->notes = $form['price']['notes'][$key];
-                $price->save();
-            }
-        }
-    }
-
-
+    // relation
 
     public function event(): BelongsTo
     {

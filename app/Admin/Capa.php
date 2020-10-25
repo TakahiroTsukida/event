@@ -16,23 +16,7 @@ class Capa extends Model
     protected $guarded = array('id');
 
 
-
-    public static function register($form, $event)
-    {
-        foreach ($form['capa']['name'] as $key => $value)
-        {
-            if ($value != null)
-            {
-                $capa = new Capa;
-                $capa->event_id = $event->id;
-                $capa->name = $value;
-                $capa->people = $form['capa']['people'][$key];
-                $capa->save();
-            }
-        }
-    }
-
-
+    // relation
 
     public function event(): BelongsTo
     {

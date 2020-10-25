@@ -22,35 +22,18 @@ class Event extends Model
         'deadline',
         'descripsion',
         'conditions',
+        'image_path',
     ];
 
     protected $guarded = array('id');
 
 
-    public static function register($request, $event)
-    {
-        $event->fill($request->all());
-
-        if (isset($request->image)) {
-            $path = $request->image->store('public/image/event_images');
-            $event->image_path = basename($path);
-        } elseif (isset($request->remove)) {
-
-            if ($event->image_path) {
-                Storage::delete("public/image/event_images/$event->image_path");
-                $event->image_path = null;
-            }
-        }
-
-        $event->save();
-    }
-
+    // relation
 
     public function shop(): BelongsTo
     {
         return $this->belongsTo('App\Admin\Shop');
     }
-
 
     public function capas(): HasMany
     {
@@ -89,7 +72,6 @@ class Event extends Model
             ? (bool)$this->likes->where('id', $user->id)->count()
             : false;
     }
-
 
     public function getCountLikesAttribute(): int
     {

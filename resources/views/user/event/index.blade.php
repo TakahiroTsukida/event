@@ -3,7 +3,7 @@
 @section('title', 'イベント検索')
 
 @section('content')
-<div class="container">
+<div class="container event-index">
     <div class="search-group">
         <form action="{{ route('top') }}">
             @csrf
@@ -30,28 +30,18 @@
 
             <div class="day">
                 <label>日時で調べる</label>
-                <input type="date" name="date" value="{{ $date[0] }}">
+                <input type="date" name="date" value="{{ $date->format('Y-m-d') }}">
             </div>
 
             <div class="search-btn">
                 <button type="submit">検索する</button>
-            </div>           
+            </div>
 
         </form>
     </div>
-    @if (count($events) > 0)
-        @foreach ($events as $event)
 
-        @php
-            $week = array( "日", "月", "火", "水", "木", "金", "土" );
 
-            $start_day = date('w', strtotime($event->start_time));
-
-            $end_day = date('w', strtotime($event->end_time));
-
-            $deadline = date('w', strtotime($event->deadline));
-        @endphp
-        
+    @forelse ($events as $event)
         <div class="eventList-item">
             <a href="{{ route('user.event.show', ['event' => $event]) }}">
                 <div class="d-flex flex-row">
@@ -65,13 +55,13 @@
                 </div>
             </a>
 
-        
+
             @foreach($event->tags as $tag)
                 @if($loop->first)
                 <div class="mt-2 mb-1 pl-3">
                     <div class="card-text line-height">
                 @endif
-                    <a href="{{ route('top', ['tags' => [$tag->id], 'date' => $date[0]]) }}" class="border p-1 mr-1 mt-1 text-muted">
+                    <a href="{{ route('top', ['tags' => [$tag->id], 'date' => $date]) }}" class="border p-1 mr-1 mt-1 text-muted">
                         {{ $tag->hashtag }}
                     </a>
                 @if($loop->last)
@@ -79,15 +69,14 @@
                 </div>
                 @endif
             @endforeach
-            
+
             <!-- いいねボタン -->
             @include('parts/event/like_button')
-            
+
             <div class="body">
                 <a href="{{ route('user.event.show', ['event' => $event]) }}">
                     <div class="about">
-                        <p>{{ isset($event->shop) ? $event->shop->name : "オンライン"}}　|　{{ date('n/j（'.$week[$start_day].'）H:i〜', strtotime($event->start_time)) }}</p>
-
+                        <p>{{ isset($event->shop) ? $event->shop->name : "オンライン"}}　|　{{ \Carbon\Carbon::parse($event->start_time)->isoFormat('MM月DD日（ddd）LT') }} 〜</p>
                         @if ($event->finish == "0")
                         <p>申し込み受付中</p>
                         @elseif ($event->finish == "1")
@@ -136,18 +125,10 @@
 
             </div>
         </div>
-
-        @php
-            unset($start_day);
-            unset($end_day);
-            unset($deadline);        
-        @endphp
-
-        @endforeach
-    @else
+    @empty
         <div class="event-empty">
             <label>対象イベントがありません</label>
         </div>
-    @endif
+    @endforelse
 </div>
 @endsection
