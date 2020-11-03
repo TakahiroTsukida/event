@@ -13,20 +13,39 @@ use Carbon\Carbon;
 
 class EventController extends Controller
 {
+    /**
+     * @var EventServiceInterface
+     */
     private $eventServiceInterface;
 
+    /**
+     * EventController constructor.
+     * @param EventServiceInterface $eventServiceInterface
+     */
     public function __construct(EventServiceInterface $eventServiceInterface)
     {
         $this->eventServiceInterface = $eventServiceInterface;
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function index(Request $request)
     {
+        // date は日付の文字列で渡ってくるため、変換してやる
+        $formDate = $request->input('date');
+        $date = null;
+        if (isset($formDate)) {
+            $form = date_parse_from_format('Y年m月d日', $formDate);
+            $date = Carbon::create($form['year'], $form['month'], $form['day']);
+        }
+
         $params = [
             'tags'    => $request->input('tags'),
             'shop_id' => $request->input('shop_id'),
-            'date'    => $request->input('date'),
+            'date'    => $date ?: today(),
         ];
 
         $events = $this->eventServiceInterface->searchEvents($params);
@@ -34,28 +53,33 @@ class EventController extends Controller
         //検索shopのselect用
         $shops = Shop::all();
         $allTags = Tag::all();
-        //viewで日付を表示用にフォーマット変換
-        $date = isset($params['date']) ? new Carbon($params['date']) : today();
 
         return view('user.event.index', [
             'events'  => $events,
             'tags'    => $params['tags'],
             'shops'   => $shops,
             'shop_id' => $params['shop_id'],
-            'date'    => $date,
+            'date'    => $params['date'],
             'allTags' => $allTags,
         ]);
 
     }
 
-
+    /**
+     * @param Event $event
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Event $event)
     {
 
         return view('user.event.show', ['event' => $event]);
     }
 
-
+    /**
+     * @param Request $request
+     * @param Event $event
+     * @return array
+     */
     public function like(Request $request, Event $event)
     {
         $event->likes()->detach($request->user()->id);
@@ -67,7 +91,11 @@ class EventController extends Controller
         ];
     }
 
-
+    /**
+     * @param Request $request
+     * @param Event $event
+     * @return array
+     */
     public function unlike(Request $request, Event $event)
     {
         $event->likes()->detach($request->user()->id);
@@ -78,14 +106,20 @@ class EventController extends Controller
         ];
     }
 
-
+    /**
+     * @param Event $event
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function join_form(Event $event)
     {
         return view('user.event.join_form', ['event' => $event]);
     }
 
-
-
+    /**
+     * @param Request $request
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function join(Request $request, Event $event)
     {
         $request->validate([
@@ -97,8 +131,10 @@ class EventController extends Controller
         return redirect()->route('user.show', ['id' => Auth::guard('user')->user()->id]);
     }
 
-
-
+    /**
+     * @param Event $event
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function unjoinConfirmation(Event $event)
     {
         $join_members = $event->joins()->get();
@@ -109,8 +145,11 @@ class EventController extends Controller
         return view('user.event.unjoin_form', ['event' => $event]);
     }
 
-
-
+    /**
+     * @param Request $request
+     * @param Event $event
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function unjoin(Request $request, Event $event)
     {
         $request->validate([
@@ -121,7 +160,10 @@ class EventController extends Controller
         return redirect()->route('user.show', ['id' => Auth::guard('user')->user()->id]);
     }
 
-
+    /**
+     * @param Event $event
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function members(Event $event)
     {
         return view('user.event.members', ['event' => $event]);

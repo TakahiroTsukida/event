@@ -1,48 +1,42 @@
-$pc: 992px; // PC 1024px
-$tab: 768px; // タブレット
-
-@mixin tab {
-  @media (min-width: ($tab)) {
-    @content;
-  }
-}
-@mixin pc {
-  @media (min-width: ($pc)) {
-    @content;
-  }
-}
+//$pc: 992px; // PC 1024px
+//$tab: 768px; // タブレット
+//
+//@mixin tab {
+//  @media (min-width: ($tab)) {
+//    @content;
+//  }
+//}
+//@mixin pc {
+//  @media (min-width: ($pc)) {
+//    @content;
+//  }
+//}
 
 main {
     background-color: #f9f9f9;
+    padding-top: 72px;
 }
-
 h2 {
     font-size: 16px !important;
 }
-
 h3 {
     font-size: 15px !important;
 }
-
 p {
     font-size: 12px !important;
 }
-
 label {
     font-size: 14px;
 }
-
 select {
     font-size: 13px;
     border: 1px;
 }
-
 input {
     font-size: 13px;
 }
-
 button {
-    font-size: 13px !important;
+    font-size: 13px;
 }
 
 //イベント一覧 (event-index)
@@ -52,17 +46,20 @@ button {
     box-shadow: 0px 0px 10px #adacac;
     margin-bottom: 27px;
     padding-bottom: 15px;
-
     a {
         color: #000;
         cursor: pointer;
         text-decoration: none;
     }
-
+    .text-muted {
+        font-size: 13px;
+        @media #{$pc} {
+            font-size: 16px;
+        }
+    }
     .name {
         margin: 10px 15px 0 15px;
     }
-
     .title {
         padding: 10px;
         margin: 0;
@@ -72,28 +69,22 @@ button {
         color: #fff;
         border-radius: 8px 8px 0 0;
     }
-
     .img {
         margin: 0;
         width: 100%;
     }
-
     .like {
         width: 100%;
         margin: 0 15px;
     }
-    
     .about {
         margin: 0 15px;
     }
-
     p{
         margin: 0;
     }
-
     .join {
         text-align: center;
-
         .cancel-btn {
             color: #fff;
             background: #cacaca;
@@ -103,7 +94,6 @@ button {
             padding: 3px;
             font-size: 13px;
         }
-
         .join-btn {
             color: #fff;
             background: linear-gradient(40deg,#45cafc,#303f9f)!important;
@@ -114,20 +104,20 @@ button {
             font-size: 13px;
         }
     }
-
     .show {
         text-align: center;
     }
 }
-
-
 /*********************************
 user.event.index
 **********************************/
-
 //イベント検索フォーム
 .search-group {
     .purpose {
+        .search-tags {
+            display: flex;
+            overflow: scroll;
+        }
         label {
             display: block;
         }
@@ -135,12 +125,58 @@ user.event.index
             display: inline-block;
             margin-right: 8px;
             cursor: pointer;
+            white-space: nowrap;
+            input[type="checkbox"] {
+                position: absolute;
+                left: -9999px;
+            }
+            p {
+                display: block;
+                position: relative;
+                text-align: center;
+                margin: 0;
+                padding: 5px 10px;
+                border: 2px solid #C0C0C0;
+                border-radius: 10px;
+                color: #000;
+                background-color: #fff;
+                white-space: nowrap;
+                cursor: pointer;
+                user-select: none;
+                transition: background-color .2s, box-shadow .2s;
+                font-size: 15px;
+                @media #{$pc} {
+                    font-size: 16px;
+                }
+            }
+            label {
+                display: block;
+            }
+            p::before {
+                display: block;
+                position: absolute;
+                top: 10px;
+                bottom: 10px;
+                left: 10px;
+                width: 32px;
+                border: 3px solid #fff;
+                border-radius: 100px;
+                transition: background-color .2s;
+            }
+            input:checked + p {
+                background-color: #222222;
+                color: #fff;
+            }
+            input:checked + p::before {
+                background-color: #000000;
+            }
         }
         label.tag input {
             cursor: pointer;
         }
     }
     .shop {
+        margin-top: 7px;
         label {
             margin: 0;
         }
@@ -161,7 +197,6 @@ user.event.index
         }
     }
     .day {
-        margin-top: 7px;
         label {
             margin: 0;
         }
@@ -179,11 +214,31 @@ user.event.index
             border: 1px solid #ced4da;
             border-radius: .25rem;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            text-align: center;
+        }
+        .vdp-datepicker__calendar {
+            width: 100%;
+            border-radius: 5px;
+
+            span.cell.day.selected {
+                background: #8de6ff;
+                border-radius: 5px;
+            }
+            span.cell.day.weekend.sat {
+                color: #2828ff;
+            }
+            span.cell.day.weekend.sun {
+                color: $red;
+            }
+            .cell:not(.blank):not(.disabled).day:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+                border-radius: 5px;
+            }
         }
     }
     .search-btn {
         width: 100%;
         display: block;
+        margin: 34px 0 45px 0;
         button {
             margin: 15px auto;
             display: block;
@@ -191,8 +246,9 @@ user.event.index
             background-color: #4285F4;
             color: #fff;
             padding: 7px 14px;
-            border-radius: 21px;
-            width: 50%;
+            border-radius: 25px;
+            width: 80%;
+            font-size: 15px;
         }
     }
 }
@@ -205,3 +261,5 @@ user.event.index
         font-size: 14px;
     }
 }
+
+

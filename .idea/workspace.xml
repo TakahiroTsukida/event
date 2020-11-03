@@ -41,38 +41,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22f0e077-c99d-4cf0-af85-fc5c33f96245" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env copy.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/CapaContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/EventContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/PriceContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/ScheduleContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/TagContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquents/EloquentCapaRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquents/EloquentEventRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquents/EloquentPriceRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquents/EloquentScheduleRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquents/EloquentTagRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Admin/AdminService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Admin/AdminServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Event/EventService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/Event/EventServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/mysql/my.cnf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/EventIndex.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Capa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Capa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Event.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Event.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Price.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Price.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Schedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Schedule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EventController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/Calendar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/_event.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/sass/_humburgar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/parts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/User/EventController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/EventController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/EventIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/EventIndex.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_bace.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_bace.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/event/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/event/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +185,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -224,7 +211,9 @@
       <updated>1603540227660</updated>
       <workItem from="1603540229452" duration="21093000" />
       <workItem from="1603626636985" duration="141000" />
-      <workItem from="1603626792974" duration="379000" />
+      <workItem from="1603626792974" duration="9538000" />
+      <workItem from="1603889152976" duration="31000" />
+      <workItem from="1604227536946" duration="20569000" />
     </task>
     <servers />
   </component>
@@ -257,9 +246,10 @@
     </state>
     <state x="768" y="123" key="SettingsEditor/-1920.-532.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603543129088" />
     <state x="768" y="123" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1603626777872" />
-    <state x="597" y="192" width="598" height="735" key="find.popup" timestamp="1603594956312">
+    <state x="597" y="192" width="598" height="735" key="find.popup" timestamp="1604233409499">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="597" y="192" width="598" height="735" key="find.popup/-1920.-532.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603594956312" />
+    <state x="597" y="192" width="598" height="735" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1604233409499" />
   </component>
 </project>

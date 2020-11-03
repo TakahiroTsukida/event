@@ -10,6 +10,8 @@ import Vue from 'vue'
 import EventLike from './components/EventLike'
 import Mypage from './components/Mypage'
 import EventTagsInput from './components/EventTagsInput'
+import EventIndex from './components/EventIndex'
+import Calendar from './components/Calendar'
 
 const app = new Vue({
     el: '#app',
@@ -17,6 +19,8 @@ const app = new Vue({
         EventLike,
         Mypage,
         EventTagsInput,
+        EventIndex,
+        Calendar,
     }
 })
 

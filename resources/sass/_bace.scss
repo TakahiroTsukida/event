@@ -33,3 +33,11 @@ a{
 img{
   width:100%;
 }
+
+select,
+input {
+    font-size: 16px !important;
+}
+input::placeholder {
+    color: rgb(202 202 202) !important;
+}

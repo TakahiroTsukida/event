@@ -4,17 +4,25 @@
 
 @section('content')
 <div class="container event-index">
+    <div id="calendar-background" class="off"></div>
     <div class="search-group">
         <form action="{{ route('top') }}">
             @csrf
             <div class="purpose">
                 <label>目的で調べる</label>
-                @foreach ($allTags as $tag)
-                <label class="tag">
-                    <input type="checkbox" name="tags[{{$loop->iteration}}]" value="{{ $tag->id }}" {{ isset($tags) && in_array($tag->id, $tags) ? 'checked' : '' }}>
-                    {{ $tag->name }}
-                </label>
-                @endforeach
+                <div class="search-tags">
+                    @foreach ($allTags as $tag)
+                    <label class="tag">
+                        <input type="checkbox" name="tags[{{$loop->iteration}}]" value="{{ $tag->id }}" {{ isset($tags) && in_array($tag->id, $tags) ? 'checked' : '' }}>
+                        <p>{{ $tag->name }}</p>
+                    </label>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="day">
+                <label>日時で調べる</label>
+                <calendar :prop-date='@json($date->format('Y-m-d'))'></calendar>
             </div>
 
             <div class="shop">
@@ -28,11 +36,6 @@
                 </select>
             </div>
 
-            <div class="day">
-                <label>日時で調べる</label>
-                <input type="date" name="date" value="{{ $date->format('Y-m-d') }}">
-            </div>
-
             <div class="search-btn">
                 <button type="submit">検索する</button>
             </div>
@@ -40,6 +43,12 @@
         </form>
     </div>
 
+    {{-- vue start --}}
+    <event-index
+        :prop-event-data='@json($events->items())'
+        :initial-current-page='@json($events->currentPage())'>
+    </event-index>
+    {{-- vue end --}}
 
     @forelse ($events as $event)
         <div class="eventList-item">
