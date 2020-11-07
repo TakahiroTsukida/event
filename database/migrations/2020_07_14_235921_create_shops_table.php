@@ -15,16 +15,17 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('tel')->nullable();
-            $table->string('postcode')->nullable();
-            $table->string('ken');
-            $table->string('city')->nullable();
-            $table->string('block')->nullable();
-            $table->string('open')->nullable();
-            $table->string('close')->nullable();
-            $table->string('web')->nullable();
-            $table->string('image_path')->nullable();
+            $table->string('name')->comment('店舗名');
+            $table->string('tel')->nullable()->comment('電話番号');
+            $table->string('postcode')->nullable()->comment('郵便番号');
+            $table->string('pref_code')->nullable()->comment('都道府県');
+            $table->string('city_code')->nullable()->comment('市区町村郡');
+            $table->string('block')->nullable()->comment('住所: それ以降');
+            $table->string('open')->nullable()->comment('開店時間');
+            $table->string('close')->nullable()->comment('閉店時間');
+            $table->string('web')->nullable()->comment('ホームページURL');
+            $table->string('google_map_url')->nullable()->comment('googleMapのURL');
+            $table->string('image_path')->nullable()->comment('店舗画像');
             $table->timestamps();
         });
     }

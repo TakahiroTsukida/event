@@ -1,5 +1,5 @@
 <nav class="navbar blue-gradient">
-    <a class="navbar-brand" href="{{ url('/') }}">
+    <a class="navbar-brand" href="{{ Auth::guard('admin')->check() ? route('admin.event.index') : route('top') }}">
         立呑イベント
     </a>
 
@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('top') }}">
+                        <a class="nav-link" href="{{ route('admin.event.index') }}">
                             イベントを検索する
                         </a>
                     </li>

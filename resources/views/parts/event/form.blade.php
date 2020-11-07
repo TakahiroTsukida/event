@@ -1,12 +1,12 @@
 @csrf
 <div class="md-form">
-    <label>イベント名</label>
-    <input type="text" name="name" class="form-control" required value="{{ $event->name ?? old('name') }}">
+    <label for="name">イベント名</label>
+    <input id="name" type="text" name="name" class="form-control" required value="{{ $event->name ?? old('name') }}">
 </div>
 
 <div class="md-form">
-    <label>タイトル</label>
-    <input type="text" name="title" class="form-control" value="{{ $event->title ?? old('title') }}">
+    <label for="title">タイトル</label>
+    <input id="title" type="text" name="title" class="form-control" value="{{ $event->title ?? old('title') }}">
 </div>
 
 <div class="form-group">
@@ -95,41 +95,41 @@
     @foreach ($event->prices as $price)
     <div class="form-row">
         <div class="col md-form">
-            <label>性別</label>
-            <input type="text" name="price[gender][]" class="form-control" value="{{ $price->gender }}">
+            <label for="gender{{$loop->iteration}}">性別</label>
+            <input id="gender{{$loop->iteration}}" type="text" name="price[gender][]" class="form-control" value="{{ $price->gender }}">
         </div>
         <div class="col md-form">
-            <label>参加費</label>
-            <input type="number" name="price[price][]" class="form-control" value="{{ $price->price }}">
+            <label for="price{{$loop->iteration}}">参加費</label>
+            <input id="price{{$loop->iteration}}" type="number" name="price[price][]" class="form-control" value="{{ $price->price }}">
         </div>
         <div class="col md-form">
-            <label>備考</label>
-            <input type="text" name="price[status][]" class="form-control" value="{{ $price->status }}">
+            <label for="status{{$loop->iteration}}">備考</label>
+            <input id="{{$loop->iteration}}" type="text" name="price[status][]" class="form-control" value="{{ $price->status }}">
         </div>
         <div class="col md-form">
-            <label>注意事項</label>
-            <input type="text" name="price[notes][]" class="form-control" value="{{ $price->notes }}">
+            <label for="notes{{$loop->iteration}}">注意事項</label>
+            <input id="notes{{$loop->iteration}}" type="text" name="price[notes][]" class="form-control" value="{{ $price->notes }}">
         </div>
     </div>
     @endforeach
 @else
-    @for ($i = 0; $i < 2; $i++) 
+    @for ($i = 0; $i < 2; $i++)
     <div class="form-row">
         <div class="col md-form">
-            <label>性別</label>
-            <input type="text" name="price[gender][]" class="form-control" value="{{ old('price.gender.$i') }}">
+            <label for="new_gerder{{$i}}">性別</label>
+            <input id="new_gerder{{$i}}" type="text" name="price[gender][]" class="form-control" value="{{ old('price.gender.$i') }}">
         </div>
         <div class="col md-form">
-            <label>参加費</label>
-            <input type="number" name="price[price][]" class="form-control" value="{{ old('price.price.$i') }}">
+            <label for="new_price{{$i}}">参加費</label>
+            <input id="new_price{{$i}}" type="number" name="price[price][]" class="form-control" value="{{ old('price.price.$i') }}">
         </div>
         <div class="col md-form">
-            <label>備考</label>
-            <input type="text" name="price[status][]" class="form-control" value="{{ old('price.status.$i') }}">
+            <label for="status{{$i}}">備考</label>
+            <input id="status{{$i}}" type="text" name="price[status][]" class="form-control" value="{{ old('price.status.$i') }}">
         </div>
         <div class="col md-form">
-            <label>注意事項</label>
-            <input type="text" name="price[notes][]" class="form-control" value="{{ old('price.notes.$i') }}">
+            <label for="new_notes{{$i}}">注意事項</label>
+            <input id="new_notes{{$i}}" type="text" name="price[notes][]" class="form-control" value="{{ old('price.notes.$i') }}">
         </div>
     </div>
     @endfor
@@ -139,8 +139,8 @@
     @foreach ($event->schedules as $schedule)
     <div class="form-row">
         <div class="col md-form">
-            <label>スケジュール名</label>
-            <input type="text" name="schedule[name][]" class="form-control" value="{{ $schedule->name }}">
+            <label for="schedule{{$loop->iteration}}">スケジュール名</label>
+            <input id="schedule{{$loop->iteration}}" type="text" name="schedule[name][]" class="form-control" value="{{ $schedule->name }}">
         </div>
         <div class="col md-form md-outline">
             <input type="time" id="begin-picker" name="schedule[begin][]" class="form-control" value="{{ $schedule->begin }}">
@@ -161,8 +161,8 @@
     @for ($i = 0; $i < 2; $i++)
     <div class="form-row">
         <div class="col md-form">
-            <label>スケジュール名</label>
-            <input type="text" name="schedule[name][]" class="form-control" value="{{ old('schedule.name.$i') }}">
+            <label for="new_schedule{{$i}}">スケジュール名</label>
+            <input id="new_schedule{{$i}}" type="text" name="schedule[name][]" class="form-control" value="{{ old('schedule.name.$i') }}">
         </div>
         <div class="col md-form md-outline">
             <input type="time" id="begin-picker" name="schedule[begin][]" class="form-control" value="{{ old('schedule.begin.$i') }}">
@@ -181,28 +181,28 @@
 @endif
 
 
-@if (isset($event->capas))
-    @foreach ($event->capas as $capa)
+@if (isset($event->reservation_seats))
+    @foreach ($event->reservation_seats as $reservation_seat)
     <div class="form-row">
         <div class="col md-form">
-            <label>定員</label>
-            <input type="text" name="capa[name][]" class="form-control" value="{{ $capa->name }}">
+            <label for="reservation_seat_name{{$loop->iteration}}">定員</label>
+            <input id="reservation_seat_name{{$loop->iteration}}" type="text" name="reservation_seat[name][]" class="form-control" value="{{ $reservation_seat->name }}">
         </div>
         <div class="col md-form">
-            <label>定員数</label>
-            <input type="number" name="capa[people][]" class="form-control" value="{{ $capa->people }}">
+            <label for="reservation_seat_people{{$loop->iteration}}">定員数</label>
+            <input id="reservation_seat_people{{$loop->iteration}}" type="number" name="reservation_seat[people][]" class="form-control" value="{{ $reservation_seat->people }}">
         </div>
     </div>
     @endforeach
-    @for ($i = 0; $i < (2 - count($event->capas)); $i++)
+    @for ($i = 0; $i < (2 - count($event->reservation_seats)); $i++)
     <div class="form-row">
         <div class="col md-form">
-            <label>定員</label>
-            <input type="text" name="capa[name][]" class="form-control" value="">
+            <label for="new_reservation_seat_name{{$i}}">定員</label>
+            <input id="new_reservation_seat_name{{$i}}" type="text" name="reservation_seat[name][]" class="form-control" value="">
         </div>
         <div class="col md-form">
-            <label>定員数</label>
-            <input type="number" name="capa[people][]" class="form-control" value="">
+            <label for="new_reservation_seat_people{{$i}}">定員数</label>
+            <input id="new_reservation_seat_people{{$i}}" type="number" name="reservation_seat[people][]" class="form-control" value="">
         </div>
     </div>
     @endfor
@@ -210,12 +210,12 @@
     @for ($i = 0; $i < 2; $i++)
     <div class="form-row">
         <div class="col md-form">
-            <label>定員</label>
-            <input type="text" name="capa[name][]" class="form-control" value="{{ old('capa.name.$i') }}">
+            <label for="new_reservation_seat_name{{$i}}">定員</label>
+            <input id="new_reservation_seat_name{{$i}}" type="text" name="reservation_seat[name][]" class="form-control" value="{{ old('reservation_seat.name.$i') }}">
         </div>
         <div class="col md-form">
-            <label>定員数</label>
-            <input type="number" name="capa[people][]" class="form-control" value="{{ old('capa.people.$i') }}">
+            <label for="new_reservation_seat_people{{$i}}">定員数</label>
+            <input id="new_reservation_seat_people{{$i}}" type="number" name="reservation_seat[people][]" class="form-control" value="{{ old('reservation_seat.people.$i') }}">
         </div>
     </div>
     @endfor

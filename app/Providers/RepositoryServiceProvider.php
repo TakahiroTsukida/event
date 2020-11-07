@@ -19,8 +19,11 @@ class RepositoryServiceProvider extends ServiceProvider
         'Shop',
         'Price',
         'Schedule',
-        'Capa',
+//        'Reservation',
+        'ReservationSeat',
         'Tag',
+//        'Prefecture',
+        'City',
     ];
 
 

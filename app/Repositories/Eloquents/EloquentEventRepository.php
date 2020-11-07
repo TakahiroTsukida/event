@@ -9,6 +9,17 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class EloquentEventRepository implements EventContract
 {
+    private const SEARCH_SORT = [
+        '1' => [
+            'column' => 'start_time',
+            'sort'   => 'desc',
+        ],
+        '2' => [
+            'column' => 'created_at',
+            'sort'   => 'asc',
+        ],
+    ];
+
     private $event;
 
     public function __construct(Event $event)
@@ -42,6 +53,11 @@ class EloquentEventRepository implements EventContract
         $query = $this->event::with('tags');
 
         //ここから検索フォーム
+        //イベント名で検索
+        if (isset($params['name'])) {
+            $query->where('name', 'like', "%{$params['name']}%");
+        }
+
         //目的（タグ）で検索
         if (isset($params['tags'])) {
             $query->whereHas('tags', function ($query) use ($params) {
@@ -59,7 +75,13 @@ class EloquentEventRepository implements EventContract
             $query->whereDate('start_time', '>=', $params['date']);
         }
 
-        return $query->orderBy('start_time')
-                    ->paginate(10);
+        if (isset($params['sort'])) {
+            $query->orderBy(self::SEARCH_SORT[$params['sort']]['column'], self::SEARCH_SORT[$params['sort']]['sort']);
+        } else {
+            $query->orderBy('start_time');
+        }
+
+        return $query->paginate(10);
+
     }
 }

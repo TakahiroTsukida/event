@@ -51,9 +51,9 @@ class CreateEvent extends FormRequest
             'schedule.end.*' => 'nullable|required_with:schedule.begin.*',
             'schedule.descripsion.*' => 'nullable|max:255',
 
-            //capasテーブル
-            'capa.name.*' => 'nullable|string|max:255|required_with:capa.people.*',
-            'capa.people.*' => 'nullable|required_with:capa.people.*',
+            //reservation_seatsテーブル
+            'reservation_seat.name.*' => 'nullable|string|max:255|required_with:reservation_seat.people.*',
+            'reservation_seat.people.*' => 'nullable|required_with:reservation_seat.people.*',
         ];
     }
 
@@ -87,7 +87,7 @@ class CreateEvent extends FormRequest
                 'descripsion' => '内容',
             ],
 
-            'capa' => [
+            'reservation_seat' => [
                 'name' => '定員種類',
                 'people' => '人数',
             ],

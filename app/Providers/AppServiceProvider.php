@@ -4,10 +4,11 @@ namespace App\Providers;
 
 use App\Services\Admin\AdminService;
 use App\Services\Admin\AdminServiceInterface;
+use App\Services\City\CityService;
+use App\Services\City\CityServiceInterface;
 use App\Services\Event\EventService;
 use App\Services\Event\EventServiceInterface;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(EventServiceInterface::class, EventService::class);
         $this->app->singleton(AdminServiceInterface::class, AdminService::class);
+        $this->app->singleton(CityServiceInterface::class, CityService::class);
     }
 
     /**

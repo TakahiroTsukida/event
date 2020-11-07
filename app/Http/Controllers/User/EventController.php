@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prefecture;
 use Illuminate\Http\Request;
 use App\Admin\Event;
 use App\Admin\Shop;
@@ -41,11 +42,19 @@ class EventController extends Controller
             $form = date_parse_from_format('Y年m月d日', $formDate);
             $date = Carbon::create($form['year'], $form['month'], $form['day']);
         }
+        // 都道府県 市区町村郡を取得
+        $prefId = $request->input('pref');
+        $cityId = $request->input('city');
+        $pref = isset($prefId) ? $this->eventServiceInterface->fetchPrefData($prefId): null;
+        $city = isset($cityId) && isset($pref) ? $this->eventServiceInterface->fetchCityData($pref, $cityId) : null;
 
+        // パラメーター取得
         $params = [
             'tags'    => $request->input('tags'),
             'shop_id' => $request->input('shop_id'),
             'date'    => $date ?: today(),
+            'pref'    => $pref,
+            'city'    => $city,
         ];
 
         $events = $this->eventServiceInterface->searchEvents($params);
@@ -53,6 +62,7 @@ class EventController extends Controller
         //検索shopのselect用
         $shops = Shop::all();
         $allTags = Tag::all();
+        $prefs = Prefecture::all();
 
         return view('user.event.index', [
             'events'  => $events,
@@ -61,6 +71,10 @@ class EventController extends Controller
             'shop_id' => $params['shop_id'],
             'date'    => $params['date'],
             'allTags' => $allTags,
+            'prefId'  => $prefId,
+            'cityId'  => $cityId,
+            'prefs'   => $prefs,
+            'url'     => 'user',
         ]);
 
     }
@@ -71,7 +85,6 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-
         return view('user.event.show', ['event' => $event]);
     }
 

@@ -31,7 +31,7 @@ $deadline = date('w', strtotime($event->deadline));
         @include('parts/event/like_button')
 
 
-        
+
         <div class="card-body pt-0 pb-2">
             <h2 class="h4 card-title">{{ $event->title }}</h2>
 
@@ -75,9 +75,9 @@ $deadline = date('w', strtotime($event->deadline));
 
                 <hr>
 
-                @foreach ($event->capas as $capa)
-                <p>性別：{{ $capa->name ?? $capa->name }}</p>
-                <p>定員：{{ $capa->people ?? $capa->people }}</p>
+                @foreach ($event->reservation_seats as $reservation_seat)
+                <p>性別：{{ $reservation_seat->name ?? $reservation_seat->name }}</p>
+                <p>定員：{{ $reservation_seat->people ?? $reservation_seat->people }}</p>
                 @endforeach
 
 

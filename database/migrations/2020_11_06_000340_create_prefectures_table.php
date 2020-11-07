@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCapasTable extends Migration
+class CreatePrefecturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,11 @@ class CreateCapasTable extends Migration
      */
     public function up()
     {
-        Schema::create('capas', function (Blueprint $table) {
+        Schema::create('prefectures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('event_id');
-            $table->string('name');
-            $table->string('people');
+            $table->string('name')->comment('都道府県名');
+            $table->integer('order')->comment('表示順');
             $table->timestamps();
-
-
-            $table->foreign('event_id')
-                ->references('id')
-                ->on('events')
-                ->onDelete('cascade');
         });
     }
 
@@ -35,6 +28,6 @@ class CreateCapasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('capas');
+        Schema::dropIfExists('prefectures');
     }
 }

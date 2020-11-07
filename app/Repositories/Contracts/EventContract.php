@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Contracts;
 
-use App\Admin\Event;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface EventContract

@@ -12,6 +12,9 @@ use Storage;
 
 class Event extends Model
 {
+    public const EVENT_HELD = [
+        'オンライン' => 200,
+    ];
 
     protected $fillable = [
         'name',
@@ -35,9 +38,9 @@ class Event extends Model
         return $this->belongsTo('App\Admin\Shop');
     }
 
-    public function capas(): HasMany
+    public function reservation_seats(): HasMany
     {
-        return $this->hasMany('App\Admin\Capa');
+        return $this->hasMany('App\Admin\ReservationSeat');
     }
 
     public function prices(): HasMany

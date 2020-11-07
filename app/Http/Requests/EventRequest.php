@@ -50,9 +50,9 @@ class EventRequest extends FormRequest
             'schedule.end.*' => 'nullable',
             'schedule.descripsion.*' => 'nullable',
 
-            //capasテーブル
-            'capa.name.*' => 'nullable|string|max:255',
-            'capa.people.*' => 'nullable',
+            //reservation_seatsテーブル
+            'reservation_seat.name.*' => 'nullable|string|max:255',
+            'reservation_seat.people.*' => 'nullable',
         ];
     }
 
@@ -89,7 +89,7 @@ class EventRequest extends FormRequest
                 'descripsion' => '内容',
             ],
 
-            'capa' => [
+            'reservation_seat' => [
                 'name' => '定員種類',
                 'people' => '人数',
             ],

@@ -12,6 +12,7 @@ import Mypage from './components/Mypage'
 import EventTagsInput from './components/EventTagsInput'
 import EventIndex from './components/EventIndex'
 import Calendar from './components/Calendar'
+import PrefCity from './components/PrefCity'
 
 const app = new Vue({
     el: '#app',
@@ -21,6 +22,7 @@ const app = new Vue({
         EventTagsInput,
         EventIndex,
         Calendar,
+        PrefCity,
     }
 })
 

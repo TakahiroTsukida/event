@@ -57,7 +57,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     // 管理者ログイン認証後
     Route::middleware('auth:admin')->group(function () {
 
-        Route::resource('event', 'EventController', ['except' => ['index', 'show']]);
+        Route::resource('event', 'EventController');
         Route::resource('shop', 'ShopController');
     });
 });

@@ -15,11 +15,11 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('event_id');
-            $table->string('gender');
-            $table->string('status')->nullable();
-            $table->string('price')->nullable();
-            $table->string('notes')->nullable();
+            $table->unsignedBigInteger('event_id')->comment('イベントID');
+            $table->string('gender')->comment('性別');
+            $table->string('status')->nullable()->comment('備考');
+            $table->integer('price')->nullable()->comment('金額');
+            $table->string('notes')->nullable()->comment('注意事項');
             $table->timestamps();
 
 

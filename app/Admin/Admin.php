@@ -5,7 +5,6 @@ namespace App\Admin;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Admin\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class Admin extends Authenticatable
@@ -19,7 +18,7 @@ class Admin extends Authenticatable
      */
 
     protected $fillable = [
-        'login_id', 'name', 'email',
+        'login_id', 'name', 'email','role_id',
     ];
 
     protected $hidden = [

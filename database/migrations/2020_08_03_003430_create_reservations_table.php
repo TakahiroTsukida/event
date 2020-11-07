@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJoinsTable extends Migration
+class CreateReservationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateJoinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('joins', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');            
-            $table->unsignedBigInteger('event_id');            
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('reservation_seat_id');
             $table->timestamps();
 
 
@@ -24,11 +24,11 @@ class CreateJoinsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-                
-                
-            $table->foreign('event_id')
+
+
+            $table->foreign('reservation_seat_id')
                 ->references('id')
-                ->on('events')
+                ->on('reservation_seats')
                 ->onDelete('cascade');
         });
     }

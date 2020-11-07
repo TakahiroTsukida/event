@@ -40,8 +40,8 @@ class EventObserver
             $schedule->delete();
         });
 
-        $event->capas()->each(function ($capa) {
-            $capa->delete();
+        $event->reservation_seats()->each(function ($reservation_seat) {
+            $reservation_seat->delete();
         });
     }
 
@@ -54,7 +54,7 @@ class EventObserver
      */
     public function deleted(Event $event)
     {
-        
+
     }
 
     /**
